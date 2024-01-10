@@ -4,6 +4,7 @@
 # install nginx if not already installed
 sudo apt-get update
 sudo apt-get install -y nginx
+sudo ufw allow "Nginx HTTP"
 
 # creating the folders
 sudo mkdir -p /data/web_static/releases/
