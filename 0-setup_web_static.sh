@@ -42,4 +42,4 @@ echo "location /hbnb_static {
 }" | sudo tee -a /etc/nginx/sites-enabled/default > /dev/null 
 
 # restarting nginx
-sudo service restart nginx
+sudo service nginx restart
