@@ -10,6 +10,7 @@ env.hosts = ['54.157.130.35', '3.90.70.134']
 env.user = 'ubuntu'
 env.path_to_key = '/root/.ssh/id_rsa'
 
+
 def do_deploy(archive_path):
     """Distributes the web static folder to the web servers"""
     try:
@@ -19,9 +20,9 @@ def do_deploy(archive_path):
 
         # uploading the files to the webservers
         put(archive_path, '/tmp/')
-        
+
         # creating the new directory to uncompress the files to
-        no_exe = archive_path[-18:-4] # removing the extensions
+        no_exe = archive_path[-18:-4]  # removing the extensions
         run(f'sudo mkdir -p /data/web_static/releases/web_static_{no_exe}/')
         
         # uncompressing the archive to a folder
@@ -38,7 +39,7 @@ def do_deploy(archive_path):
         # create new sym link
         run(f'sudo ln -s /data/web_static/releases/web_static_{no_exe}/ /data/web_static/current')
 
-    except:
+    except Exception:
         return False
 
     return True
