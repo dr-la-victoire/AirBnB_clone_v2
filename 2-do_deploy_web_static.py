@@ -25,9 +25,11 @@ def do_deploy(archive_path):
         run(f'sudo mkdir -p /data/web_static/releases/web_static_{no_exe}/')
         
         # uncompressing the archive to a folder
-        run(f'tar -xzf /tmp/web_static/{no_exe}.tgz -C /data/web_static/releases/web_static_{no_exe}/')
+        run(f'tar -xzf /tmp/web_static_{no_exe}.tgz -C /data/web_static/releases/web_static_{no_exe}/')
 
         # deleting the archive from web server
+        run(f'sudo rm /tmp/web_static_{no_exe}.tgz')
+        run(f'sudo mv /data/web_static/releases/web_static_{no_exe}/web_static/* /data/web_static/releases/web_static_{no_exe}/')
         run(f'sudo rm -rf /data/web_static/releases/web_static_{no_exe}/web_static')
 
         # deleting the sym link
