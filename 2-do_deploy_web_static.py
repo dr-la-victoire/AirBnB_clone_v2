@@ -7,8 +7,6 @@ from os import path
 
 # setting up the user, hosts and private key
 env.hosts = ['54.157.130.35', '3.90.70.134']
-env.user = 'ubuntu'
-env.path_to_key = '/root/.ssh/id_rsa'
 
 
 def do_deploy(archive_path):
@@ -19,7 +17,8 @@ def do_deploy(archive_path):
             return False
 
         # uploading the files to the webservers
-        put(archive_path, '/tmp/')
+        the_file = archive_path.split('/')[-1]
+        put(archive_path, '/tmp/{}'.format(the_file))
 
         # creating the new directory to uncompress the files to
         no_exe = archive_path[-18:-4]  # removing the extensions
