@@ -52,3 +52,10 @@ class FileStorage:
     def close(self):
         """Calling the reload method on this class"""
         reload()
+
+    def delete(self, obj=None):
+        """"Deletes objs from __objects"""
+        if obj in FileStorage.__objects:
+            del obj
+        else:
+            pass
